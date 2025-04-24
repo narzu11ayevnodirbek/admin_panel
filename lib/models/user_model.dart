@@ -21,12 +21,15 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      firstName: json["firstName"],
-      lastName: json["lastName"],
-      gender: json["gender"],
-      login: json["login"],
-      password: json["password"],
-      birthDate: _parseDate(json["birthDate"]),
+      firstName: json["firstName"] ?? "",
+      lastName: json["lastName"] ?? "",
+      gender: json["gender"] ?? "",
+      login: json["login"] ?? "",
+      password: json["password"] ?? "",
+      birthDate:
+          json["birthDate"] != null
+              ? _parseDate(json["birthDate"])
+              : DateTime.now(),
       bookings:
           (json["bookings"] as Map<String, dynamic>? ?? {}).entries
               .map((e) => BookingModel.fromJson(e.value))
@@ -42,7 +45,7 @@ class UserModel {
       "login": login,
       "password": password,
       "birthDate": birthDate.toString(),
-      "booking": bookings,
+      "bookings": bookings.map((e) => e.toJson()).toList(),
     };
   }
 

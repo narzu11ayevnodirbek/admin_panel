@@ -40,11 +40,12 @@ class _ManageHotelsScreenState extends State<ManageHotelsScreen> {
       backgroundColor: Colors.grey,
       appBar: AppBar(title: Text("Hotels"), centerTitle: true),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
         onPressed: () async {
           await showCreateHotelModal(context, hotelViewModel);
           setState(() {});
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
       ),
       body:
           isLoading
